@@ -1,36 +1,33 @@
 package org.example;
 
-import java.util.Vector;
+import java.util.HashSet;
 
 public class PracticeSet {
-    private Vector<String> nameSet;
+    private HashSet<String> values;
 
     PracticeSet(String[] arrayNames){
-        nameSet = new Vector<>();
-        for(int i = 0; i < arrayNames.length; i++){
-            nameSet.add(arrayNames[i]);
+        values = new HashSet<>();
+        for(String element:arrayNames){
+            values.add(element);
         }
     }
 
-    public void addNewName(String newName){
-        nameSet.add(newName);
+    public void addNew(String newName){
+        values.add(newName);
     }
 
     public boolean search(String searchedName){
-        return nameSet.contains(searchedName);
+        return values.contains(searchedName);
     }
 
-    public void deleteOldName(int index){
-        Vector<String> newNameSet = new Vector<String>();
-        for (int i = 0; i < nameSet.size(); i++) if(i != index) newNameSet.add(nameSet.get(i));
-        nameSet = newNameSet;
+    public void deleteOld(String value){
+        HashSet<String> newNameSet = new HashSet<String>();
+        for (String element : values) if(!element.equals(value)) newNameSet.add(element);
+        values = newNameSet;
     }
 
     @Override
     public String toString() {
-        String result = "PracticeSet{nameSet=";
-        for(int i = 0; i < nameSet.size(); i++) result = result + nameSet.get(i) + "\n";
-        result += '}';
-        return  result;
+        return  values.toString();
     }
 }
